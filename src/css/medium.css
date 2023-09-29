@@ -1,0 +1,42 @@
+@media only screen and (min-width: 32.5em) {
+  h1 {
+    margin: 0 30px;
+  }
+
+  header {
+    flex-direction: row;
+  }
+
+  body {
+    padding: 2rem 1rem 1rem;
+  }
+
+  main {
+    margin-top: 1.5rem;
+  }
+
+  .logo img {
+    width: 90px;
+  }
+
+  .sidebar-nav {
+    border-radius: 54px;
+    margin: 0 20px 0 0;
+    width: 130px;
+  }
+
+  footer {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .footer-1-container {
+    flex-grow: 1;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  .footer-2-container img {
+    margin-bottom: 5px;
+  }
+}
