@@ -151,7 +151,7 @@ i {
     height: 100%;
     top: 0;
     left: 0;
-    opacity: 0.5;
+    opacity: 0.8;
     transition: opacity 0.2s ease-out;
   }
 
@@ -164,9 +164,20 @@ i {
   }
 
   p {
+    font-weight: 600;
+  }
+
+  span {
+    color: var(--light-grey);
+    font-weight: 200;
+  }
+
+  .card-content {
     position: absolute;
-    opacity: 0;
     max-width: 80%;
+    bottom: 100px;
+    padding: 5px 10px;
+    opacity: 0;
     transition: opacity 0.3s ease-out;
     inset: auto auto 80px 30px;
   }
@@ -174,8 +185,10 @@ i {
   &:hover h2 {
     inset: auto auto 220px 30px;
     transition: inset 0.3s ease-out;
+    padding: 5px;
   }
 
+  &:hover .card-content,
   &:hover p,
   &:hover a {
     opacity: 1;
@@ -184,7 +197,7 @@ i {
 
   &:hover img {
     transition: opacity 0.3s ease-in;
-    opacity: 1;
+    opacity: 0.2;
   }
 
   button {
