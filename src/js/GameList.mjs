@@ -5,10 +5,11 @@ import {
 } from "./utils.mjs";
 
 export default class GameListing {
-  constructor(dataSource, listElement) {
+  constructor(dataSource, listElement, category) {
     this.dataSource = dataSource;
     this.listElement = listElement;
     this.list = {};
+    this.category = category;
   }
   async init() {
     this.list = await this.dataSource.getData();
@@ -47,6 +48,18 @@ export default class GameListing {
             </li>`;
   }
   renderList(list) {
-    renderListWithTemplate(this.gameCardTemplate, this.listElement, list);
+    let filteredList = list;
+
+    if (this.category) {
+      filteredList = list.filter((game) =>
+        game.genres.find((genre) => genre.slug == this.category)
+      );
+    }
+
+    renderListWithTemplate(
+      this.gameCardTemplate,
+      this.listElement,
+      filteredList
+    );
   }
 }
