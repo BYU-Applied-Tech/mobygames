@@ -1,0 +1,31 @@
+{
+  "title": "Platforms",
+  "result": [
+    {
+      "name": "Windows",
+      "img": "../images/icons/icon-windows.png",
+      "slug": "pc"
+    },
+    {
+      "name": "Android",
+      "img": "../images/icons/icon-android.png",
+      "slug": "android"
+    },
+    {
+      "name": "Macintosh",
+      "img": "../images/icons/icon-apple.png",
+      "slug": "ios"
+    },
+    { "name": "Xbox", "img": "../images/icons/icon-xbox.png", "slug": "xbox" },
+    {
+      "name": "Playstation",
+      "img": "../images/icons/icon-ps5.png",
+      "slug": "playstation"
+    },
+    {
+      "name": "Nintendo",
+      "img": "../images/icons/icon-nintendo.png",
+      "slug": "nintendo"
+    }
+  ]
+}

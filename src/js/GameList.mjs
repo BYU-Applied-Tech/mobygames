@@ -52,8 +52,9 @@ export default class GameListing {
 
     if (this.category) {
       filteredList = list.filter((game) =>
-        game.genres.find((genre) => genre.slug == this.category)
+        game.platforms.find(({platform}) => platform.slug.includes(this.category))
       );
+     
     }
 
     renderListWithTemplate(

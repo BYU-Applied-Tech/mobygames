@@ -1,4 +1,4 @@
-import GenreListing from "./GenreList.mjs";
+import PlatformListing from "./PlatformList.mjs";
 import GameListing from "./GameList.mjs";
 import GameData from "./GameData.mjs";
 import GenreData from "./GenreData.mjs";
@@ -9,12 +9,16 @@ const genreListSource = new GenreData();
 const gameListSource = new GameData();
 
 const genreListElement = document.querySelector(".genre-list");
-const genreList = new GenreListing(category, genreListSource, genreListElement);
+const PlatformList = new PlatformListing(
+  category,
+  genreListSource,
+  genreListElement
+);
 
 const genreGroupElement = document.querySelector(".genre-group");
 const genreGroup = new GameListing(gameListSource, genreGroupElement, category);
 
-genreList.init();
+PlatformList.init();
 genreGroup.init();
 
 loadHeaderFooter();
