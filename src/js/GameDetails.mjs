@@ -12,7 +12,6 @@ export default class GameDetails {
     // once the HTML is rendered we can add a listener to Add to Cart button
     // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
     this.product = await this.dataSource.findGameById(this.productId);
-    console.log("id", this.product);
     this.renderProductDetails("section");
     document
       .getElementById("addToCart")
@@ -34,7 +33,13 @@ export default class GameDetails {
             src="${product.background_image}"
             alt="${product.name}"
         />
-       
+      <div class="game-details-text-container"> 
+      <p>Rating: <span>${product.rating}&nbsp⭐️</span></p>
+      <p>ESRB Rating: <span>${product.esrb_rating.name}</span></p>
+      <p>Genre: <span>${product.genres.map((genre) => `${genre.name}`)}</span>
+      <p>Tags: <span>${product.tags.map((genre) => `${genre.name}`)}</span>
+      <p>Date released: <span>${product.released}</span></p>
+      </div>
         <h2>Screenshots</h2>
         <ul class="screenshots">
          ${product.short_screenshots.slice(1).map(
@@ -46,8 +51,6 @@ export default class GameDetails {
          /></li>`
          )}
         </ul>
-        
-        <p class="product-card__price">$${product.released}</p>
        `;
 
     element.insertAdjacentHTML("afterbegin", template);
