@@ -35,6 +35,20 @@ export default class GameListing {
     this.list = await this.dataSource.getData();
     this.renderList(this.list);
     this.renderPageTitle();
+    document.getElementById("addToFave").addEventListener(
+      "click",
+      (e) => {
+        e.preventDefault();
+        console.log("e", e.currentTarget);
+        document
+          .getElementById(e.currentTarget.id)
+          .addEventListener(
+            "click",
+            this.addToFavorites(e.currentTarget.value)
+          );
+      },
+      true
+    );
   }
   renderPageTitle() {
     const platform = this.platformList.find(
@@ -50,9 +64,8 @@ export default class GameListing {
                      </div>`;
     }
   }
-  addToCart(gameId) {
+  addToFavorites(gameId) {
     let favorites = getLocalStorage("so-favorites") ?? [];
-
     const game = this.list.find(({ id }) => JSON.stringify(id) === gameId);
     favorites.push(game);
 
@@ -73,7 +86,7 @@ export default class GameListing {
               Find out more <i class="fa-solid fa-arrow-right"></i>
               </a>
             </div>
-            <button href="#" id="addToFave" data-id="${game.id}" class="card-favorite"><i id="${game.id}" class="fa-regular fa-heart"></i></button>
+            <button id="addToFave" value="${game.id}" class="card-favorite"><i id="${game.id}"  value="${game.id}" class="fa-regular fa-heart"></i></button>
             </li>`;
   }
   renderList(list) {

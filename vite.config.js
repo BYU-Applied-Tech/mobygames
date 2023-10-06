@@ -9,7 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "src/index.html"),
-        cart: resolve(__dirname, "src/cart/index.html"),
+        favorites: resolve(__dirname, "src/favorites/index.html"),
         game: resolve(__dirname, "src/game_pages/index.html"),
       },
     },

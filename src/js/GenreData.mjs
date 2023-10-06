@@ -16,7 +16,7 @@ export default class PlatformData {
       .catch((err) => console.error(err));
   }
   async findGameById(id) {
-    const products = await this.getData();
-    return products.find((item) => item.Id === id);
+    const favorites = await this.getData();
+    return favorites.find((item) => item.Id === id);
   }
 }

@@ -13,12 +13,14 @@ const gameList = new GameListing(
   category
 );
 
+
 const genreDataSource = new GenreData();
-const PlatformList = new PlatformListing(
+const platformList = new PlatformListing(
   genreDataSource,
   document.querySelector(".platforms-list")
 );
 
 gameList.init();
-PlatformList.init();
+platformList.init();
+
 loadHeaderFooter();
