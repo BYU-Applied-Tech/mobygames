@@ -2,8 +2,7 @@ import { renderListWithTemplate } from "./utils.mjs";
 // import platformListSource from "../json/platforms.json";
 
 export default class PlatformListing {
-  constructor(dataSource, listElement) {
-    this.dataSource = dataSource;
+  constructor( listElement) {
     this.listElement = listElement;
     this.list = [
       { name: "Windows", img: "../images/icons/icon-windows.png", slug: "pc" },

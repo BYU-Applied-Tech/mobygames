@@ -1,5 +1,4 @@
 import GameData from "./GameData.mjs";
-import GenreData from "./GenreData.mjs";
 import GameListing from "./GameList.mjs";
 import PlatformListing from "./PlatformList.mjs";
 import { loadHeaderFooter, getParam } from "./utils.mjs";
@@ -13,10 +12,7 @@ const gameList = new GameListing(
   category
 );
 
-
-const genreDataSource = new GenreData();
 const platformList = new PlatformListing(
-  genreDataSource,
   document.querySelector(".platforms-list")
 );
 

@@ -55,9 +55,6 @@ export function renderWithTemplate(
   position = "afterbegin"
 ) {
   parentElement.insertAdjacentHTML(position, template);
-  //if (callback) {
-  //  callback(data)
-  //}
 }
 
 export async function loadHeaderFooter() {
