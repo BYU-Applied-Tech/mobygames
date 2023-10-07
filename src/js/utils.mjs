@@ -57,14 +57,17 @@ export function renderWithTemplate(
   parentElement.insertAdjacentHTML(position, template);
 }
 
-export async function loadHeaderFooter() {
+export async function loadHeaderNavFooter() {
   const header = await loadTemplate("../partials/header.html");
+  const nav = await loadTemplate("../partials/navigation.html");
   const footer = await loadTemplate("../partials/footer.html");
 
   const headerElement = document.getElementById("main-header");
+  const navElement = document.querySelector(".sidebar-nav");
   const footerElement = document.getElementById("main-footer");
 
   renderWithTemplate(header, headerElement);
+  renderWithTemplate(nav, navElement);
   renderWithTemplate(footer, footerElement);
 }
 

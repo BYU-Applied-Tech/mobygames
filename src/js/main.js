@@ -1,7 +1,9 @@
+import { loadHeaderNavFooter, getParam } from "./utils.mjs";
 import GameData from "./GameData.mjs";
 import GameListing from "./GameList.mjs";
 import PlatformListing from "./PlatformList.mjs";
-import { loadHeaderFooter, getParam } from "./utils.mjs";
+
+loadHeaderNavFooter();
 
 const category = getParam("platform");
 
@@ -18,5 +20,3 @@ const platformList = new PlatformListing(
 
 gameList.init();
 platformList.init();
-
-loadHeaderFooter();

@@ -23,63 +23,22 @@
       src="https://kit.fontawesome.com/92af9c9158.js"
       crossorigin="anonymous"
     ></script>
-    <script src="../js/main.js" type="module"></script>
     <script src="../js/favorites.js" type="module"></script>
   </head>
 
   <nav class="sidebar-nav">
-    <div class="logo">
-      <img src="/images/noun_whale.svg" alt="tent image for logo" />
-    </div>
-
-    <ul>
-      <li>
-        <a href="/index.html"><i class="fa-solid fa-house"></i></a>
-      </li>
-      <li>
-        <a href="/favorites/index.html"><i class="fa-regular fa-heart"></i></a>
-      </li>
-      <ul class="platform-list"></ul>
-    </ul>
+    <ul class="platform-list"></ul>
   </nav>
 
   <main>
-    <header>
-      <div>
-        <h1>Welcome to <span class="primary-text-color">Game Sense</span></h1>
-      </div>
-      <div class="search-container">
-        <form action="/action_page.php" class="search-bar">
-          <i class="fa-solid fa-magnifying-glass fa-rotate-90"></i>
-          <input type="text" placeholder="Search Game Sense" name="search" />
-        </form>
-      </div>
-    </header>
+    <header id="main-header"></header>
+
     <section class="favorites">
       <h2>My Favorites</h2>
 
       <ul class="favorites-list"></ul>
     </section>
 
-    <footer>
-      <div class="footer-1-container">
-        <p>&copy; <span id="year"></span> Norre Daroy WDD 330</p>
-        <p id="date"></p>
-        <div class="social">
-          <a href="https://www.facebook.com" target="_blank"
-            ><img src="../images/icon-facebook.svg" alt="facebook logo"
-          /></a>
-          <a href="https://www.linkedin.com" target="_blank"
-            ><img src="../images/icon-linkedin.svg" alt="linkedin logo"
-          /></a>
-        </div>
-      </div>
-
-      <div class="footer-2-container">
-        <img src="../images/moby-games-logo.svg" alt="Game Sense logo" />
-        <img src="../images/powered-by-text.svg" alt="Game Sense logo" />
-        <img src="../images/api-text.svg" alt="Game Sense logo" />
-      </div>
-    </footer>
+    <footer id="main-footer"></footer>
   </main>
 </html>
