@@ -5,8 +5,8 @@ import GameDetails from "./GameDetails.mjs";
 loadHeaderNavFooter();
 
 const gameId = getParam("game");
-const dataSource = new GameData();
+const gameData = new GameData();
 
-const product = new GameDetails(gameId, dataSource);
+const game = new GameDetails(gameId, gameData);
 
-product.init();
+game.init();

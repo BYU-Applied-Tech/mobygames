@@ -26,9 +26,9 @@ export function setClick(selector, callback) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get(param);
+  const game = urlParams.get(param);
 
-  return product;
+  return game;
 }
 // takes a template, html element and a JS list. It then adds those
 // list items to the html element using the template.

@@ -7,9 +7,9 @@ loadHeaderNavFooter();
 
 const category = getParam("platform");
 
-const dataSource = new GameData();
+const gameData = new GameData();
 const gameList = new GameListing(
-  dataSource,
+  gameData,
   document.querySelector(".game-list"),
   category
 );
