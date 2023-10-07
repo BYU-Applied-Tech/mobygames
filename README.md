@@ -1,9 +1,11 @@
-# 🎮 Moby Games 👾
+# 🎮 Game Sense 👾
 
 ## Randomized production URL
- 👉 https://earnest-narwhal-5d4fdc.netlify.app
+
+👉 https://earnest-narwhal-5d4fdc.netlify.app
 
 ## Table of Contents
+
 - [Description](#-description)
 - [Prerequisites](#-prerequisites)
 - [Setup](#-setup)

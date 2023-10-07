@@ -35,20 +35,20 @@ export default class GameListing {
     this.list = await this.dataSource.getData();
     this.renderList(this.list);
     this.renderPageTitle();
-    document.getElementById("addToFave").addEventListener(
-      "click",
-      (e) => {
-        e.preventDefault();
-        console.log("e", e.currentTarget);
-        document
-          .getElementById(e.currentTarget.id)
-          .addEventListener(
-            "click",
-            this.addToFavorites(e.currentTarget.value)
-          );
-      },
-      true
-    );
+    // document.getElementById("addToFave").addEventListener(
+    //   "click",
+    //   (e) => {
+    //     e.preventDefault();
+    //     console.log("e", e.currentTarget);
+    //     document
+    //       .getElementById(e.currentTarget.id)
+    //       .addEventListener(
+    //         "click",
+    //         this.addToFavorites(e.currentTarget.value)
+    //       );
+    //   },
+    //   true
+    // );
   }
   renderPageTitle() {
     const platform = this.platformList.find(
@@ -91,6 +91,7 @@ export default class GameListing {
   }
   renderList(list) {
     let filteredList = list;
+    const searchInput = document.getElementById("search-input");
 
     if (this.category) {
       filteredList = list.filter((game) =>
@@ -100,10 +101,34 @@ export default class GameListing {
       );
     }
 
+    searchInput.addEventListener("keyup", (event) => {
+      const { value } = event.target;
+
+      filteredList = this.searchBarGame(value, list);
+
+      renderListWithTemplate(
+        this.gameCardTemplate,
+        this.listElement,
+        filteredList
+      );
+    });
+
     renderListWithTemplate(
       this.gameCardTemplate,
       this.listElement,
       filteredList
     );
+  }
+  searchBarGame(value, list) {
+    // get user search input converted to lowercase
+    const searchQuery = value.toLowerCase();
+
+    // filter the list of games
+    return list.filter((game) => {
+      // convert current game name to lowercase
+      const gameName = game.name.toLowerCase();
+      // check if the game name includes the search query string
+      return gameName.includes(searchQuery);
+    });
   }
 }
