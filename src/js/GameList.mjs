@@ -35,20 +35,20 @@ export default class GameListing {
     this.list = await this.dataSource.getData();
     this.renderList(this.list);
     this.renderPageTitle();
-    // document.getElementById("addToFave").addEventListener(
-    //   "click",
-    //   (e) => {
-    //     e.preventDefault();
-    //     console.log("e", e.currentTarget);
-    //     document
-    //       .getElementById(e.currentTarget.id)
-    //       .addEventListener(
-    //         "click",
-    //         this.addToFavorites(e.currentTarget.value)
-    //       );
-    //   },
-    //   true
-    // );
+    document.getElementById("addToFave").addEventListener(
+      "click",
+      (e) => {
+        e.preventDefault();
+        console.log("e", e.currentTarget);
+        document
+          .getElementById(e.currentTarget.id)
+          .addEventListener(
+            "click",
+            this.addToFavorites(e.currentTarget.value)
+          );
+      },
+      true
+    );
   }
   renderPageTitle() {
     const platform = this.platformList.find(
@@ -65,11 +65,11 @@ export default class GameListing {
     }
   }
   addToFavorites(gameId) {
-    let favorites = getLocalStorage("so-favorites") ?? [];
+    let favorites = getLocalStorage("gs-favorites") ?? [];
     const game = this.list.find(({ id }) => JSON.stringify(id) === gameId);
     favorites.push(game);
 
-    setLocalStorage("so-favorites", favorites);
+    setLocalStorage("gs-favorites", favorites);
   }
   gameCardTemplate(game) {
     return `<li class="card"> 
