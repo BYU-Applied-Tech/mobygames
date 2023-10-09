@@ -142,7 +142,8 @@ a {
 }
 
 /* GAMES LIST */
-.games {
+.games,
+.favorites {
   min-height: 60vh;
 }
 
