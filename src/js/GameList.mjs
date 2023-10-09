@@ -15,19 +15,16 @@ export default class GameListing {
     this.list = await this.dataSource.getData();
     this.renderList(this.list);
     this.renderPageTitle();
-    document.getElementById("addToFave").addEventListener(
-      "click",
-      (e) => {
+    this.handleAddFavoriteGame();
+  }
+  handleAddFavoriteGame() {
+    const favorites = document.getElementsByClassName("favorite-game");
+    for (const favorite of favorites) {
+      favorite.addEventListener("click", (e) => {
         e.preventDefault();
-        document
-          .getElementById(e.currentTarget.id)
-          .addEventListener(
-            "click",
-            this.addToFavorites(e.currentTarget.value)
-          );
-      },
-      true
-    );
+        this.addToFavorites(e.currentTarget.value);
+      });
+    }
   }
   async renderPageTitle() {
     const platformList = await this.getPlatformList();
@@ -70,7 +67,7 @@ export default class GameListing {
               Find out more <i class="fa-solid fa-arrow-right"></i>
               </a>
             </div>
-            <button id="addToFave" value="${game.id}" class="card-favorite"><i id="${game.id}"  value="${game.id}" class="fa-regular fa-heart"></i></button>
+            <button value="${game.id}" class="card-favorite favorite-game"><i id="${game.id}"  value="${game.id}" class="fa-regular fa-heart"></i></button>
             </li>`;
   }
   renderList(list) {
