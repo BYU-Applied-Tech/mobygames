@@ -1,32 +1,17 @@
 import { renderListWithTemplate } from "./utils.mjs";
-// import platformListSource from "../json/platforms.json";
 
 export default class PlatformListing {
-  constructor( listElement) {
+  constructor(listElement) {
     this.listElement = listElement;
-    this.list = [
-      { name: "Windows", img: "../images/icons/icon-windows.png", slug: "pc" },
-      {
-        name: "Android",
-        img: "../images/icons/icon-android.png",
-        slug: "android",
-      },
-      { name: "Macintosh", img: "../images/icons/icon-apple.png", slug: "ios" },
-      { name: "Xbox", img: "../images/icons/icon-xbox.png", slug: "xbox" },
-      {
-        name: "Playstation",
-        img: "../images/icons/icon-ps5.png",
-        slug: "playstation",
-      },
-      {
-        name: "Nintendo",
-        img: "../images/icons/icon-nintendo.png",
-        slug: "nintendo",
-      },
-    ];
   }
   async init() {
-    this.renderList(this.list);
+    this.renderList();
+  }
+  async getPlatformList() {
+    return await fetch("public/json/platforms.json")
+      .then((response) => response.json())
+      .then((data) => data.result)
+      .catch((error) => console.error("Error:", error));
   }
   platformTemplate(platform) {
     return `<li class="platform"> 
@@ -37,7 +22,9 @@ export default class PlatformListing {
             <div class="platform-label"><p>${platform.name}</p></div>
             </a></li>`;
   }
-  renderList(list) {
+  async renderList() {
+    const list = await this.getPlatformList();
+
     renderListWithTemplate(this.platformTemplate, this.listElement, list);
   }
 }
