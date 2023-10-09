@@ -10,26 +10,6 @@ export default class GameListing {
     this.listElement = listElement;
     this.list = {};
     this.category = category;
-    this.platformList = [
-      { name: "Windows", img: "../images/icons/icon-windows.png", slug: "pc" },
-      {
-        name: "Android",
-        img: "../images/icons/icon-android.png",
-        slug: "android",
-      },
-      { name: "Macintosh", img: "../images/icons/icon-apple.png", slug: "ios" },
-      { name: "Xbox", img: "../images/icons/icon-xbox.png", slug: "xbox" },
-      {
-        name: "Playstation",
-        img: "../images/icons/icon-ps5.png",
-        slug: "playstation",
-      },
-      {
-        name: "Nintendo",
-        img: "../images/icons/icon-nintendo.png",
-        slug: "nintendo",
-      },
-    ];
   }
   async init() {
     this.list = await this.dataSource.getData();
@@ -39,7 +19,6 @@ export default class GameListing {
       "click",
       (e) => {
         e.preventDefault();
-        console.log("e", e.currentTarget);
         document
           .getElementById(e.currentTarget.id)
           .addEventListener(
@@ -50,10 +29,9 @@ export default class GameListing {
       true
     );
   }
-  renderPageTitle() {
-    const platform = this.platformList.find(
-      (name) => name.slug === this.category
-    );
+  async renderPageTitle() {
+    const platformList = await this.getPlatformList();
+    const platform = platformList.find((name) => name.slug === this.category);
     if (this.category) {
       document.getElementById(
         "page-title"
@@ -63,6 +41,12 @@ export default class GameListing {
                      <img src="${platform.img}" alt="${platform.name}"/></div>
                      </div>`;
     }
+  }
+  async getPlatformList() {
+    return await fetch("public/json/platforms.json")
+      .then((response) => response.json())
+      .then((data) => data.result)
+      .catch((error) => console.error("Error:", error));
   }
   addToFavorites(gameId) {
     let favorites = getLocalStorage("gs-favorites") ?? [];
