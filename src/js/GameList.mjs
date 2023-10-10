@@ -99,7 +99,7 @@ export default class GameListing {
     const searchInput = document.getElementById("search-input");
 
     if (this.category) {
-      filteredList = list.filter((game) =>
+      filteredList = filteredList.filter((game) =>
         game.platforms.find(({ platform }) =>
           platform.slug.includes(this.category)
         )
@@ -109,12 +109,14 @@ export default class GameListing {
     searchInput.addEventListener("keyup", (event) => {
       const { value } = event.target;
 
-      filteredList = this.searchBarGame(value, list);
+      const searchList = this.searchBarGame(value, filteredList);
 
       renderListWithTemplate(
         this.gameCardTemplate,
         this.listElement,
-        filteredList
+        searchList,
+        "afterbegin",
+        true
       );
     });
 
