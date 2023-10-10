@@ -11,7 +11,7 @@ export default class GameListing {
     this.listElement = listElement;
     this.list = {};
     this.category = category;
-    this.favorites = getLocalStorage("gs-favorites") ?? [];
+    this.favorites = getLocalStorage("cg-favorites") ?? [];
   }
   async init() {
     this.list = await this.dataSource.getData();
@@ -69,7 +69,7 @@ export default class GameListing {
       .getElementById(element.id)
       .classList.toggle("card-favorite-selected-color");
 
-    setLocalStorage("gs-favorites", favorites);
+    setLocalStorage("cg-favorites", favorites);
   }
   gameCardTemplate(game) {
     return `<li class="card"> 

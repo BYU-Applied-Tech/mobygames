@@ -5,7 +5,7 @@ export default class Favorites {
     this.parentSelector = parentSelector;
   }
   renderFavoritesContents() {
-    const cartItems = getLocalStorage("gs-favorites");
+    const cartItems = getLocalStorage("cg-favorites");
     if (cartItems != null) {
       const htmlItems = cartItems.map((item) => this.cartItemTemplate(item));
       document.querySelector(".favorites-list").innerHTML = htmlItems.join("");
