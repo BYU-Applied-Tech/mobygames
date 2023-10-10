@@ -1,5 +1,5 @@
 import { renderListWithTemplate } from "./utils.mjs";
-let platformJson = require("path/to/your/json/file");
+const platformJson = require("./path/to/your/json/file");
 
 export default class PlatformListing {
   constructor(listElement) {
