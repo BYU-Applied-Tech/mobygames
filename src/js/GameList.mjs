@@ -3,6 +3,7 @@ import {
   getLocalStorage,
   setLocalStorage,
 } from "./utils.mjs";
+import platformJson from "../public/json/platforms.json";
 
 export default class GameListing {
   constructor(dataSource, listElement, category) {
@@ -38,7 +39,7 @@ export default class GameListing {
     }
   }
   async renderPageTitle() {
-    const platformList = await this.getPlatformList();
+    const platformList = platformJson.result;
     const platform = platformList.find((name) => name.slug === this.category);
     if (this.category) {
       document.getElementById(
@@ -49,12 +50,6 @@ export default class GameListing {
                      <img src="${platform.img}" alt="${platform.name}"/></div>
                      </div>`;
     }
-  }
-  async getPlatformList() {
-    return await fetch("public/json/platforms.json")
-      .then((response) => response.json())
-      .then((data) => data.result)
-      .catch((error) => console.error("Error:", error));
   }
   handleFavorites(gameId, element) {
     let favorites = this.favorites;

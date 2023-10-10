@@ -1,5 +1,5 @@
 import { renderListWithTemplate } from "./utils.mjs";
-const platformJson = require("./path/to/your/json/file");
+import platformJson from "../public/json/platforms.json";
 
 export default class PlatformListing {
   constructor(listElement) {
@@ -7,17 +7,6 @@ export default class PlatformListing {
   }
   async init() {
     this.renderList();
-  }
-  async getPlatformList() {
-    return await fetch(platformJson, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => data.result)
-      .catch((error) => console.error("Error:", error));
   }
   platformTemplate(platform) {
     return `<li class="platform"> 
@@ -29,7 +18,7 @@ export default class PlatformListing {
             </a></li>`;
   }
   async renderList() {
-    const list = await this.getPlatformList();
+    const list = platformJson.result;
 
     renderListWithTemplate(this.platformTemplate, this.listElement, list);
   }
