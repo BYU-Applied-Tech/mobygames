@@ -8,7 +8,12 @@ export default class PlatformListing {
     this.renderList();
   }
   async getPlatformList() {
-    return await fetch("public/json/platforms.json")
+    return await fetch("public/json/platforms.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => data.result)
       .catch((error) => console.error("Error:", error));
