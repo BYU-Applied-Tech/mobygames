@@ -10,19 +10,30 @@ export default class GameListing {
     this.listElement = listElement;
     this.list = {};
     this.category = category;
+    this.favorites = getLocalStorage("gs-favorites") ?? [];
   }
   async init() {
     this.list = await this.dataSource.getData();
     this.renderList(this.list);
     this.renderPageTitle();
-    this.handleAddFavoriteGame();
+    this.toggleFavoriteGame();
   }
-  handleAddFavoriteGame() {
-    const favorites = document.getElementsByClassName("favorite-game");
-    for (const favorite of favorites) {
-      favorite.addEventListener("click", (e) => {
+  toggleFavoriteGame() {
+    const gameCards = document.getElementsByClassName("favorite-game");
+    const favoriteIds = this.favorites.map(({ id }) => JSON.stringify(id));
+
+    for (const gameCard of gameCards) {
+      const gameCardElement = document.getElementById(gameCard.id);
+      if (favoriteIds.includes(gameCard.id)) {
+        gameCardElement.classList.add("card-favorite-selected-color");
+      } else {
+        gameCardElement.classList.remove("card-favorite-selected-color");
+      }
+
+      gameCard.addEventListener("click", (e) => {
         e.preventDefault();
-        this.addToFavorites(e.currentTarget.value);
+        const selectedGame = e.currentTarget.value;
+        this.handleFavorites(selectedGame, gameCard);
       });
     }
   }
@@ -45,10 +56,23 @@ export default class GameListing {
       .then((data) => data.result)
       .catch((error) => console.error("Error:", error));
   }
-  addToFavorites(gameId) {
-    let favorites = getLocalStorage("gs-favorites") ?? [];
-    const game = this.list.find(({ id }) => JSON.stringify(id) === gameId);
-    favorites.push(game);
+  handleFavorites(gameId, element) {
+    let favorites = this.favorites;
+    const selectedGame = this.list.find(({ id }) => id == gameId);
+    const isGameInFavorites = !!this.favorites.find(({ id }) => id == gameId);
+
+    if (isGameInFavorites) {
+      favorites.splice(
+        favorites.findIndex(({ id }) => id == gameId),
+        1
+      );
+    } else {
+      favorites.push(selectedGame);
+    }
+
+    document
+      .getElementById(element.id)
+      .classList.toggle("card-favorite-selected-color");
 
     setLocalStorage("gs-favorites", favorites);
   }
@@ -67,7 +91,7 @@ export default class GameListing {
               Find out more <i class="fa-solid fa-arrow-right"></i>
               </a>
             </div>
-            <button value="${game.id}" class="card-favorite favorite-game"><i id="${game.id}"  value="${game.id}" class="fa-regular fa-heart"></i></button>
+            <button id="${game.id}" value="${game.id}" class="card-favorite favorite-game"><i   class="fa-regular fa-heart"></i></button>
             </li>`;
   }
   renderList(list) {

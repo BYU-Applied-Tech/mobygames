@@ -275,6 +275,10 @@ a {
   transition: background-color 1s ease;
 }
 
+.card-favorite-selected-color {
+  background-color: #d95555;
+}
+
 .card-favorite i {
   margin: 0;
 }
